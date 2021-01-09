@@ -13,15 +13,16 @@ which is editable by the user.
 
 Keyword arguments:
 - id (string; optional): The ID used to identify this component in Dash callbacks.
-- label (string; required): A label that will be printed when this component is rendered.
-- value (string; optional): The value displayed in the input."""
+- modelPatch (dict; optional): An JSON patch that will update the layout's model
+- layoutEvent (dict; optional): An event sent from the layout
+- importSourceUrl (string; optional): A string defining the base URL where dynamically importable web modules can be found"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, label=Component.REQUIRED, value=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'label', 'value']
+    def __init__(self, id=Component.UNDEFINED, modelPatch=Component.UNDEFINED, layoutEvent=Component.UNDEFINED, importSourceUrl=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'modelPatch', 'layoutEvent', 'importSourceUrl']
         self._type = 'IdomPlotlyDash'
         self._namespace = 'idom_plotly_dash'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'label', 'value']
+        self.available_properties = ['id', 'modelPatch', 'layoutEvent', 'importSourceUrl']
         self.available_wildcard_properties =            []
 
         _explicit_args = kwargs.pop('_explicit_args')
@@ -29,7 +30,7 @@ Keyword arguments:
         _locals.update(kwargs)  # For wildcard attrs
         args = {k: _locals[k] for k in _explicit_args if k != 'children'}
 
-        for k in ['label']:
+        for k in []:
             if k not in args:
                 raise TypeError(
                     'Required argument `' + k + '` was not specified.')

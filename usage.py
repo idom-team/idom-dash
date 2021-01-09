@@ -1,23 +1,23 @@
-import idom_plotly_dash
 import dash
-from dash.dependencies import Input, Output
+import dash_core_components as dcc
 import dash_html_components as html
+from dash.dependencies import Input, Output
 
-app = dash.Dash(__name__)
+from idom_plotly_dash import IdomPlotlyDash
 
-app.layout = html.Div([
-    idom_plotly_dash.IdomPlotlyDash(
-        id='input',
-        value='my-value',
-        label='my-label'
-    ),
-    html.Div(id='output')
-])
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+
+app.layout = IdomPlotlyDash(id="my-layout")
 
 
-@app.callback(Output('output', 'children'), [Input('input', 'value')])
-def display_output(value):
-    return 'You have entered {}'.format(value)
+@app.callback(
+    Output(component_id='my-layout', component_property='modelPatch'),
+    Input(component_id='my-layout', component_property='layoutEvent')
+)
+def update_output_div(event):
+    return None
 
 
 if __name__ == '__main__':

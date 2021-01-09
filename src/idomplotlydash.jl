@@ -13,11 +13,12 @@ It renders an input with the property `value`
 which is editable by the user.
 Keyword arguments:
 - `id` (String; optional): The ID used to identify this component in Dash callbacks.
-- `label` (String; required): A label that will be printed when this component is rendered.
-- `value` (String; optional): The value displayed in the input.
+- `modelPatch` (Dict; optional): An JSON patch that will update the layout's model
+- `layoutEvent` (Dict; optional): An event sent from the layout
+- `importSourceUrl` (String; optional): A string defining the base URL where dynamically importable web modules can be found
 """
 function idomplotlydash(; kwargs...)
-        available_props = Symbol[:id, :label, :value]
+        available_props = Symbol[:id, :modelPatch, :layoutEvent, :importSourceUrl]
         wild_props = Symbol[]
         return Component("idomplotlydash", "IdomPlotlyDash", "idom_plotly_dash", available_props, wild_props; kwargs...)
 end

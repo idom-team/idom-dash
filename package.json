@@ -24,6 +24,7 @@
   "author": "Ryan Morshead <ryan.morshead@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "idom-client-react": "^0.6.0",
     "ramda": "^0.26.1"
   },
   "devDependencies": {

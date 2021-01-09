@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import Layout from 'idom-client-react';
 
 /**
  * ExampleComponent is an example component.
@@ -8,27 +9,34 @@ import PropTypes from 'prop-types';
  * It renders an input with the property `value`
  * which is editable by the user.
  */
-export default class IdomPlotlyDash extends Component {
-    render() {
-        const {id, label, setProps, value} = this.props;
 
+export default class IdomPlotlyDash extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { modelPatches: [], updateLayout: undefined };
+      }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.modelPatch) {
+            nextState.modelPatches.push(nextProps.modelPatch);
+            delete nextProps.modelPatches;
+        }
+        if (nextState.updateLayout && nextState.modelPatches) {
+            nextState.modelPatches.map(nextState.updateLayout);
+            nextState.modelPatches = [];
+        }
+        return false;
+    }
+
+    render() {
+        const { id, importSourceUrl, setProps } = this.props;
         return (
             <div id={id}>
-                ExampleComponent: {label}&nbsp;
-                <input
-                    value={value}
-                    onChange={
-                        /*
-                         * Send the new value to the parent component.
-                         * setProps is a prop that is automatically supplied
-                         * by dash's front-end ("dash-renderer").
-                         * In a Dash app, this will update the component's
-                         * props and send the data back to the Python Dash
-                         * app server if a callback uses the modified prop as
-                         * Input or State.
-                         */
-                        e => setProps({ value: e.target.value })
-                    }
+                <Layout
+                    saveUpdateHook={ updateLayout => this.setState({ updateLayout }) }
+                    sendEvent={ event => setProps({ layoutEvent: event }) }
+                    importSourceUrl={ importSourceUrl }
                 />
             </div>
         );
@@ -44,14 +52,19 @@ IdomPlotlyDash.propTypes = {
     id: PropTypes.string,
 
     /**
-     * A label that will be printed when this component is rendered.
+     * An JSON patch that will update the layout's model
      */
-    label: PropTypes.string.isRequired,
+    modelPatch: PropTypes.object,
 
     /**
-     * The value displayed in the input.
+     * An event sent from the layout
      */
-    value: PropTypes.string,
+    layoutEvent: PropTypes.object,
+
+    /**
+     * A string defining the base URL where dynamically importable web modules can be found
+     */
+    importSourceUrl: PropTypes.string,
 
     /**
      * Dash-assigned callback that should be called to report property changes

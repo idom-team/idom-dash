@@ -10,15 +10,18 @@ ExampleComponent is an example component. It takes a property, `label`, and disp
 }
 
 \usage{
-idomPlotlyDash(id=NULL, label=NULL, value=NULL)
+idomPlotlyDash(id=NULL, modelPatch=NULL, layoutEvent=NULL,
+importSourceUrl=NULL)
 }
 
 \arguments{
 \item{id}{Character. The ID used to identify this component in Dash callbacks.}
 
-\item{label}{Character. A label that will be printed when this component is rendered.}
+\item{modelPatch}{Named list. An JSON patch that will update the layout's model}
 
-\item{value}{Character. The value displayed in the input.}
+\item{layoutEvent}{Named list. An event sent from the layout}
+
+\item{importSourceUrl}{Character. A string defining the base URL where dynamically importable web modules can be found}
 }
 
 \value{named list of JSON elements corresponding to React.js properties and their values}

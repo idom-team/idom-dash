@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-idomPlotlyDash <- function(id=NULL, label=NULL, value=NULL) {
+idomPlotlyDash <- function(id=NULL, modelPatch=NULL, layoutEvent=NULL, importSourceUrl=NULL) {
     
-    props <- list(id=id, label=label, value=value)
+    props <- list(id=id, modelPatch=modelPatch, layoutEvent=layoutEvent, importSourceUrl=importSourceUrl)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@ idomPlotlyDash <- function(id=NULL, label=NULL, value=NULL) {
         props = props,
         type = 'IdomPlotlyDash',
         namespace = 'idom_plotly_dash',
-        propNames = c('id', 'label', 'value'),
+        propNames = c('id', 'modelPatch', 'layoutEvent', 'importSourceUrl'),
         package = 'idomPlotlyDash'
         )
 
