@@ -16,8 +16,8 @@ setup(
     include_package_data=True,
     license=package['license'],
     description=package.get('description', package_name),
-    install_requires=[],
+    install_requires=["idom"],
     classifiers = [
         'Framework :: Dash',
-    ],    
+    ],
 )

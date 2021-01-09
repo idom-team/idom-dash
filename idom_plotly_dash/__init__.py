@@ -6,6 +6,8 @@ import json
 
 import dash as _dash
 
+from .constructor import IdomComponent
+
 # noinspection PyUnresolvedReferences
 from ._imports_ import *
 from ._imports_ import __all__

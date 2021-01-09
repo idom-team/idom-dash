@@ -14,17 +14,13 @@ export default class IdomPlotlyDash extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { modelPatches: [], updateLayout: undefined };
+        this.state = { updateLayoutCallback: undefined };
       }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.modelPatch) {
-            nextState.modelPatches.push(nextProps.modelPatch);
-            delete nextProps.modelPatches;
-        }
-        if (nextState.updateLayout && nextState.modelPatches) {
-            nextState.modelPatches.map(nextState.updateLayout);
-            nextState.modelPatches = [];
+        if (nextProps.layoutUpdate) {
+            const { pathPrefix, patch } = nextProps.layoutUpdate;
+            nextState.updateLayoutCallback(pathPrefix, patch);
         }
         return false;
     }
@@ -34,7 +30,7 @@ export default class IdomPlotlyDash extends Component {
         return (
             <div id={id}>
                 <Layout
-                    saveUpdateHook={ updateLayout => this.setState({ updateLayout }) }
+                    saveUpdateHook={ updateLayoutCallback => this.setState({ updateLayoutCallback }) }
                     sendEvent={ event => setProps({ layoutEvent: event }) }
                     importSourceUrl={ importSourceUrl }
                 />
@@ -52,9 +48,9 @@ IdomPlotlyDash.propTypes = {
     id: PropTypes.string,
 
     /**
-     * An JSON patch that will update the layout's model
+     * An object describing a JSON patch that will update the layout's model
      */
-    modelPatch: PropTypes.object,
+    layoutUpdate: PropTypes.object,
 
     /**
      * An event sent from the layout
