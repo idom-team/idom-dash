@@ -1,4 +1,4 @@
-# idom-plotly-dash
+# idom-plotly-dash (🚧 this projet is still under construction 🚧)
 
 idom-plotly-dash is a Dash component library.
 
