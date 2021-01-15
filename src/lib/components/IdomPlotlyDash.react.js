@@ -18,9 +18,10 @@ export default class IdomPlotlyDash extends Component {
       }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.layoutUpdate) {
-            const { pathPrefix, patch } = nextProps.layoutUpdate;
-            nextState.updateLayoutCallback(pathPrefix, patch);
+        if (nextProps.layoutUpdates) {
+            nextProps.layoutUpdates.map(
+                ({ pathPrefix, changes }) => nextState.updateLayoutCallback(pathPrefix, changes)
+            );
         }
         return false;
     }
@@ -50,7 +51,7 @@ IdomPlotlyDash.propTypes = {
     /**
      * An object describing a JSON patch that will update the layout's model
      */
-    layoutUpdate: PropTypes.object,
+    layoutUpdates: PropTypes.array,
 
     /**
      * An event sent from the layout

@@ -11,9 +11,9 @@
         "required": false,
         "description": "The ID used to identify this component in Dash callbacks."
       },
-      "layoutUpdate": {
+      "layoutUpdates": {
         "type": {
-          "name": "object"
+          "name": "array"
         },
         "required": false,
         "description": "An object describing a JSON patch that will update the layout's model"

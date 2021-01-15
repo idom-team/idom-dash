@@ -10,14 +10,14 @@ ExampleComponent is an example component. It takes a property, `label`, and disp
 }
 
 \usage{
-idomPlotlyDash(id=NULL, layoutUpdate=NULL, layoutEvent=NULL,
+idomPlotlyDash(id=NULL, layoutUpdates=NULL, layoutEvent=NULL,
 importSourceUrl=NULL)
 }
 
 \arguments{
 \item{id}{Character. The ID used to identify this component in Dash callbacks.}
 
-\item{layoutUpdate}{Named list. An object describing a JSON patch that will update the layout's model}
+\item{layoutUpdates}{Unnamed list. An object describing a JSON patch that will update the layout's model}
 
 \item{layoutEvent}{Named list. An event sent from the layout}
 

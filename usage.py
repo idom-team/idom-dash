@@ -11,7 +11,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 @idom.element
 def ClickCount():
     count, set_count = idom.hooks.use_state(0)
-    return idom.html.button({"onClick": lambda event: set_count(count + 1)}, "hello")
+    return idom.html.button({"onClick": lambda event: set_count(count + 1)}, count)
 
 app.layout = IdomComponent(app, ClickCount)
 
