@@ -6,19 +6,12 @@ export idomplotlydash
     idomplotlydash(;kwargs...)
 
 An IdomPlotlyDash component.
-ExampleComponent is an example component.
-It takes a property, `label`, and
-displays it.
-It renders an input with the property `value`
-which is editable by the user.
+
 Keyword arguments:
-- `id` (String; optional): The ID used to identify this component in Dash callbacks.
-- `layoutUpdates` (Array; optional): An object describing a JSON patch that will update the layout's model
-- `layoutEvent` (Dict; optional): An event sent from the layout
-- `importSourceUrl` (String; optional): A string defining the base URL where dynamically importable web modules can be found
+- `viewId` (String; optional): The view ID for this component instance
 """
 function idomplotlydash(; kwargs...)
-        available_props = Symbol[:id, :layoutUpdates, :layoutEvent, :importSourceUrl]
+        available_props = Symbol[:viewId]
         wild_props = Symbol[]
         return Component("idomplotlydash", "IdomPlotlyDash", "idom_plotly_dash", available_props, wild_props; kwargs...)
 end

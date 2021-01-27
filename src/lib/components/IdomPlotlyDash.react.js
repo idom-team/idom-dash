@@ -2,38 +2,40 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Layout from 'idom-client-react';
 
-/**
- * ExampleComponent is an example component.
- * It takes a property, `label`, and
- * displays it.
- * It renders an input with the property `value`
- * which is editable by the user.
- */
-
 export default class IdomPlotlyDash extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = { updateLayoutCallback: undefined };
-      }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.layoutUpdates) {
-            nextProps.layoutUpdates.map(
-                ({ pathPrefix, changes }) => nextState.updateLayoutCallback(pathPrefix, changes)
-            );
-        }
-        return false;
-    }
-
     render() {
-        const { id, importSourceUrl, setProps } = this.props;
+        let loc = window.location;
+        let wsProtocol;
+        if (loc.protocol === 'https:') {
+            wsProtocol = 'wss:';
+        } else {
+            wsProtocol = 'ws:';
+        }
+
+        const baseWebSocketUrl = wsProtocol + '//' + loc.host + loc.pathname;
+        const baseHttpUrl = loc.protocol + '//' + loc.host + loc.pathname;
+
+        const ws = new WebSocket(
+            baseWebSocketUrl + `_idom/stream?view_id=${this.props.viewId}`
+        );
+
+        function saveUpdateHook(update) {
+            ws.onmessage = (event) => {
+                const [pathPrefix, patch] = JSON.parse(event.data);
+                update(pathPrefix, patch);
+            };
+        }
+
+        function sendEvent(event) {
+            ws.send(JSON.stringify(event));
+        }
+
         return (
-            <div id={id}>
+            <div id={'hello'}>
                 <Layout
-                    saveUpdateHook={ updateLayoutCallback => this.setState({ updateLayoutCallback }) }
-                    sendEvent={ event => setProps({ layoutEvent: event }) }
-                    importSourceUrl={ importSourceUrl }
+                    saveUpdateHook={saveUpdateHook}
+                    sendEvent={sendEvent}
+                    importSourceUrl={baseHttpUrl + '_idom/client/web_modules'}
                 />
             </div>
         );
@@ -44,28 +46,13 @@ IdomPlotlyDash.defaultProps = {};
 
 IdomPlotlyDash.propTypes = {
     /**
-     * The ID used to identify this component in Dash callbacks.
+     * The view ID for this component instance
      */
-    id: PropTypes.string,
-
-    /**
-     * An object describing a JSON patch that will update the layout's model
-     */
-    layoutUpdates: PropTypes.array,
-
-    /**
-     * An event sent from the layout
-     */
-    layoutEvent: PropTypes.object,
-
-    /**
-     * A string defining the base URL where dynamically importable web modules can be found
-     */
-    importSourceUrl: PropTypes.string,
+    viewId: PropTypes.string,
 
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
      */
-    setProps: PropTypes.func
+    setProps: PropTypes.func,
 };

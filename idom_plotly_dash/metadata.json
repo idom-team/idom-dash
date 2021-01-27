@@ -1,36 +1,15 @@
 {
   "src/lib/components/IdomPlotlyDash.react.js": {
-    "description": "ExampleComponent is an example component.\nIt takes a property, `label`, and\ndisplays it.\nIt renders an input with the property `value`\nwhich is editable by the user.",
+    "description": "",
     "displayName": "IdomPlotlyDash",
     "methods": [],
     "props": {
-      "id": {
+      "viewId": {
         "type": {
           "name": "string"
         },
         "required": false,
-        "description": "The ID used to identify this component in Dash callbacks."
-      },
-      "layoutUpdates": {
-        "type": {
-          "name": "array"
-        },
-        "required": false,
-        "description": "An object describing a JSON patch that will update the layout's model"
-      },
-      "layoutEvent": {
-        "type": {
-          "name": "object"
-        },
-        "required": false,
-        "description": "An event sent from the layout"
-      },
-      "importSourceUrl": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": "A string defining the base URL where dynamically importable web modules can be found"
+        "description": "The view ID for this component instance"
       },
       "setProps": {
         "type": {

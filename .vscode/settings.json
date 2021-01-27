@@ -1,3 +1,7 @@
 {
-    "python.pythonPath": "/home/ryan/.pyenv/versions/idom-plotly-dash/bin/python"
+    "editor.formatOnSave": true,
+    "python.pythonPath": "/home/ryan/.pyenv/versions/idom-plotly-dash/bin/python",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }

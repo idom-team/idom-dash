@@ -6,7 +6,7 @@ import json
 
 import dash as _dash
 
-from .constructor import IdomComponent
+from .server_extension import create_component, run_server
 
 # noinspection PyUnresolvedReferences
 from ._imports_ import *
