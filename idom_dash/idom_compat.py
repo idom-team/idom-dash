@@ -6,15 +6,15 @@ from idom.widgets.utils import multiview
 from idom.core.component import AbstractComponent
 from idom.server.flask import PerClientStateServer, Config
 
-from .IdomPlotlyDash import IdomPlotlyDash
+from .IdomDashComponent import IdomDashComponent
 
 
 _MOUNT, _CMPT = multiview()
 
 
-def create_component(__constructor: Callable[[], AbstractComponent], *args: Any, **kwargs: Any) -> IdomPlotlyDash:
+def create_component(__constructor: Callable[[], AbstractComponent], *args: Any, **kwargs: Any) -> IdomDashComponent:
     view_id = _MOUNT(lambda: __constructor(*args, **kwargs))
-    return IdomPlotlyDash(viewId=view_id)
+    return IdomDashComponent(viewId=view_id)
 
 
 def run_server(app: Dash, *args: Any, **kwargs: Any) -> None:

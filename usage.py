@@ -3,7 +3,7 @@ import dash_html_components as html
 
 import idom
 
-from idom_plotly_dash import create_component, run_server
+from idom_dash import create_component, run_server
 
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)

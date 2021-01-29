@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
-import IdomPlotlyDash from './components/IdomPlotlyDash.react';
+import IdomDashComponent from './components/IdomDashComponent.react';
 
 export {
-    IdomPlotlyDash
+    IdomDashComponent
 };

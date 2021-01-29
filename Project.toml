@@ -1,6 +1,6 @@
 
-name = "IdomPlotlyDash"
-uuid = "1b08a953-4be3-4667-9a23-1e6216ab101e"
+name = "IdomDash"
+uuid = "1b08a953-4be3-4667-9a23-f213e429975d"
 authors = ["Ryan Morshead <ryan.morshead@gmail.com>"]
 version = "0.0.1"
 

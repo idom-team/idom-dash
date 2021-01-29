@@ -1,22 +1,22 @@
 {
-  "name": "idom_plotly_dash",
+  "name": "idom_dash",
   "version": "0.0.1",
-  "description": "A custom component for Plotly Dash that uses IDOM",
+  "description": "A custom component for Dash that uses IDOM",
   "repository": {
     "type": "git",
-    "url": "git://github.com/idom-team/idom-plotly-dash.git"
+    "url": "git://github.com/idom-team/idom-dash.git"
   },
   "bugs": {
-    "url": "https://github.com/idom-team/idom-plotly-dash/issues"
+    "url": "https://github.com/idom-team/idom-dash/issues"
   },
-  "homepage": "https://github.com/idom-team/idom-plotly-dash",
+  "homepage": "https://github.com/idom-team/idom-dash",
   "main": "build/index.js",
   "scripts": {
     "start": "webpack-serve --config ./webpack.serve.config.js --open",
     "validate-init": "python _validate_init.py",
     "prepublishOnly": "npm run validate-init",
     "build:js": "webpack --mode production",
-    "build:py_and_r": "dash-generate-components ./src/lib/components idom_plotly_dash -p package-info.json --r-prefix '' --jl-prefix ''",
+    "build:py_and_r": "dash-generate-components ./src/lib/components idom_dash -p package-info.json --r-prefix '' --jl-prefix ''",
     "build:py_and_r-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
     "build": "npm run build:js && npm run build:py_and_r",
     "build:activated": "npm run build:js && npm run build:py_and_r-activated"
@@ -24,7 +24,8 @@
   "author": "Ryan Morshead <ryan.morshead@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "idom-client-react": "^0.7.0"
+    "idom-client-react": "^0.7.0",
+    "ramda": "^0.26.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
@@ -44,8 +45,8 @@
     "react": "^16.8.6",
     "react-docgen": "^4.1.1",
     "react-dom": "^16.8.6",
-    "style-loader": "^0.23.1",
     "styled-jsx": "^3.2.1",
+    "style-loader": "^0.23.1",
     "webpack": "4.36.1",
     "webpack-cli": "3.3.6",
     "webpack-serve": "3.1.0"

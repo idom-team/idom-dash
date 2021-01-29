@@ -1,7 +1,7 @@
-include idom_plotly_dash/idom_plotly_dash.min.js
-include idom_plotly_dash/idom_plotly_dash.min.js.map
-include idom_plotly_dash/metadata.json
-include idom_plotly_dash/package-info.json
+include idom_dash/idom_dash.min.js
+include idom_dash/idom_dash.min.js.map
+include idom_dash/metadata.json
+include idom_dash/package-info.json
 include README.md
 include LICENSE
 include package.json
