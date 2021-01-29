@@ -9,13 +9,27 @@ external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 
-victory = idom.install("victory", fallback="loading...")
+victory = idom.install("victory@35.4.0", fallback="loading...")
 
 
 @idom.component
 def ClickCount():
     count, set_count = idom.hooks.use_state(0)
-    return idom.html.button({"onClick": lambda event: set_count(count + 1)}, count)
+    return idom.html.button(
+        {
+            "id": "click-counter",
+            "onClick": lambda event: set_count(count + 1)
+        },
+        count
+    )
+
+
+@idom.component
+def VictoryBarChart():
+    return idom.html.div(
+        {"id": "victory-bar-chart"},
+        victory.VictoryBar({"style": {"parent": {"width": "500px"}}})
+    )
 
 
 app.layout = html.Div(
@@ -24,7 +38,7 @@ app.layout = html.Div(
         create_component(ClickCount),
         html.Br(),
         html.H1("Installed Component (victory.js)"),
-        create_component(victory.VictoryBar, {"style": {"parent": {"width": "500px"}}}),
+        create_component(VictoryBarChart),
         html.Br(),
     ]
 )
