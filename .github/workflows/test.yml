@@ -27,4 +27,4 @@ jobs:
           pip install -r tests/requirements.txt
           pip install .
       - name: Run Tests
-        run: pytest tests
+        run: pytest tests --headless
