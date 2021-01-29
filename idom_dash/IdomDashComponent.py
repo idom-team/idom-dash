@@ -3,8 +3,8 @@
 from dash.development.base_component import Component, _explicitize_args
 
 
-class IdomPlotlyDash(Component):
-    """An IdomPlotlyDash component.
+class IdomDashComponent(Component):
+    """An IdomDashComponent component.
 
 
 Keyword arguments:
@@ -12,8 +12,8 @@ Keyword arguments:
     @_explicitize_args
     def __init__(self, viewId=Component.UNDEFINED, **kwargs):
         self._prop_names = ['viewId']
-        self._type = 'IdomPlotlyDash'
-        self._namespace = 'idom_plotly_dash'
+        self._type = 'IdomDashComponent'
+        self._namespace = 'idom_dash'
         self._valid_wildcard_attributes =            []
         self.available_properties = ['viewId']
         self.available_wildcard_properties =            []
@@ -27,4 +27,4 @@ Keyword arguments:
             if k not in args:
                 raise TypeError(
                     'Required argument `' + k + '` was not specified.')
-        super(IdomPlotlyDash, self).__init__(**args)
+        super(IdomDashComponent, self).__init__(**args)

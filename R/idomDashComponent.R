@@ -1,6 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-idomPlotlyDash <- function(viewId=NULL) {
+idomDashComponent <- function(viewId=NULL) {
     
     props <- list(viewId=viewId)
     if (length(props) > 0) {
@@ -8,10 +8,10 @@ idomPlotlyDash <- function(viewId=NULL) {
     }
     component <- list(
         props = props,
-        type = 'IdomPlotlyDash',
-        namespace = 'idom_plotly_dash',
+        type = 'IdomDashComponent',
+        namespace = 'idom_dash',
         propNames = c('viewId'),
-        package = 'idomPlotlyDash'
+        package = 'idomDash'
         )
 
     structure(component, class = c('dash_component', 'list'))

@@ -1,7 +1,7 @@
 {
-  "src/lib/components/IdomPlotlyDash.react.js": {
+  "src/lib/components/IdomDashComponent.react.js": {
     "description": "",
-    "displayName": "IdomPlotlyDash",
+    "displayName": "IdomDashComponent",
     "methods": [],
     "props": {
       "viewId": {

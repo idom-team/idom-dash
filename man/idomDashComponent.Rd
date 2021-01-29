@@ -1,16 +1,16 @@
 % Auto-generated: do not edit by hand
-\name{idomPlotlyDash}
+\name{idomDashComponent}
 
-\alias{idomPlotlyDash}
+\alias{idomDashComponent}
 
-\title{IdomPlotlyDash component}
+\title{IdomDashComponent component}
 
 \description{
 
 }
 
 \usage{
-idomPlotlyDash(viewId=NULL)
+idomDashComponent(viewId=NULL)
 }
 
 \arguments{

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Layout from 'idom-client-react';
 
-export default class IdomPlotlyDash extends Component {
+export default class IdomDashComponent extends Component {
     render() {
         let loc = window.location;
         let wsProtocol;
@@ -42,9 +42,9 @@ export default class IdomPlotlyDash extends Component {
     }
 }
 
-IdomPlotlyDash.defaultProps = {};
+IdomDashComponent.defaultProps = {};
 
-IdomPlotlyDash.propTypes = {
+IdomDashComponent.propTypes = {
     /**
      * The view ID for this component instance
      */

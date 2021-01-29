@@ -1,25 +1,26 @@
+from idom_dash.idom_compat import run_daemon_server
+
 from dash.testing.application_runners import import_app
 
 
 # Basic test for the component rendering.
 # The dash_duo pytest fixture is installed with dash (v1.0+)
-def test_render_component(dash_duo):
+def test_basic_click_counter(dash_duo):
     # Start a dash app contained as the variable `app` in `usage.py`
     app = import_app('usage')
-    dash_duo.start_server(app)
 
-    # Get the generated component input with selenium
-    # The html input will be a children of the #input dash component
-    my_component = dash_duo.find_element('#input > input')
+    host, port = "127.0.0.1", dash_duo.server.port
+    run_daemon_server(app, host, port)
+    dash_duo.driver.get(f"http://{host}:{port}/")
 
-    assert 'my-value' == my_component.get_attribute('value')
+    # Get the click counter and check that it reacts to interaction
+    click_counter = dash_duo.find_element('#click-counter')
 
-    # Clear the input
-    dash_duo.clear_input(my_component)
+    click_counter.click()
+    click_counter.click()
+    click_counter.click()
 
-    # Send keys to the custom input.
-    my_component.send_keys('Hello dash')
+    dash_duo.wait_for_text_to_equal("#click-counter", "3")
 
-    # Wait for the text to equal, if after the timeout (default 10 seconds)
-    # the text is not equal it will fail the test.
-    dash_duo.wait_for_text_to_equal('#output', 'You have entered Hello dash')
+    # check that the installed component was displayed
+    dash_duo.find_element('#victory-bar-chart > .VictoryContainer')
