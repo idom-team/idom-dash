@@ -5,7 +5,7 @@ from dash.testing.application_runners import import_app
 
 # Basic test for the component rendering.
 # The dash_duo pytest fixture is installed with dash (v1.0+)
-def test_basic_click_counter(dash_duo):
+def test_usage(dash_duo):
     # Start a dash app contained as the variable `app` in `usage.py`
     app = import_app('usage')
 
@@ -23,4 +23,13 @@ def test_basic_click_counter(dash_duo):
     dash_duo.wait_for_text_to_equal("#click-counter", "3")
 
     # check that the installed component was displayed
-    dash_duo.find_element('#victory-bar-chart > .VictoryContainer')
+    dash_duo.find_element('.VictoryContainer')
+
+    # check that installed component is interactable
+    material_click_count = dash_duo.find_element('.MuiButtonBase-root')
+
+    material_click_count.click()
+    material_click_count.click()
+    material_click_count.click()
+
+    dash_duo.wait_for_text_to_equal(".MuiButtonBase-root", "3")
