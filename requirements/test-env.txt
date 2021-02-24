@@ -1,1 +1,2 @@
 pytest
+dash[testing]>=1.15.0

@@ -26,6 +26,9 @@ def test(session: Session) -> None:
     session.env.update(os.environ)
     session.install("-r", "requirements/test-env.txt")
     session.install(".")
+
+    session.run("idom", "install", "victory@35.4.0", "@material-ui/core@4.11.3")
+
     args = ["pytest", "tests"]
     if HEADLESS:
         args.append("--headless")
