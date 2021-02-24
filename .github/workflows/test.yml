@@ -23,8 +23,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install Python Dependencies
-        run: |
-          pip install -r tests/requirements.txt
-          pip install .
+        run: pip install -r requirements/run-test.txt
       - name: Run Tests
-        run: pytest tests --headless
+        run: HEADLESS=1 nox -s test
