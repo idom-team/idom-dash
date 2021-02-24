@@ -1,3 +1,7 @@
+# There's some sort of race condition going on with the anyio import?
+# Some module ends up only partially initialized for some reason...
+import anyio._backends._asyncio
+
 from idom_dash.idom_compat import run_daemon_server
 
 from dash.testing.application_runners import import_app
