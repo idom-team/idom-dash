@@ -1,2 +1,3 @@
-# dash is required to call `build:py`
-dash[dev]>=1.15.0
+-r requirements/build-deps.txt
+-r requirements/test-env.txt
+-r requirements/run-test.txt
