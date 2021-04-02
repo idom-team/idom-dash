@@ -1,6 +1,6 @@
 {
   "name": "idom_dash",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A custom component for Dash that uses IDOM",
   "repository": {
     "type": "git",
@@ -13,6 +13,7 @@
   "main": "build/index.js",
   "scripts": {
     "start": "webpack-serve --config ./webpack.serve.config.js --open",
+    "format": "prettier --write ./src/lib",
     "validate-init": "python _validate_init.py",
     "prepublishOnly": "npm run validate-init",
     "build:js": "webpack --mode production",
@@ -41,12 +42,13 @@
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-react": "^7.14.2",
     "npm": "^6.1.0",
+    "prettier": "^2.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-docgen": "^4.1.1",
     "react-dom": "^16.8.6",
-    "styled-jsx": "^3.2.1",
     "style-loader": "^0.23.1",
+    "styled-jsx": "^3.2.1",
     "webpack": "4.36.1",
     "webpack-cli": "3.3.6",
     "webpack-serve": "3.1.0"

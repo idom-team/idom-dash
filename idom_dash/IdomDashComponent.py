@@ -8,14 +8,15 @@ class IdomDashComponent(Component):
 
 
 Keyword arguments:
-- viewId (string; optional): The view ID for this component instance"""
+- viewId (string; optional): The view ID for this component instance
+- clientModuleUrl (string; optional)"""
     @_explicitize_args
-    def __init__(self, viewId=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['viewId']
+    def __init__(self, viewId=Component.UNDEFINED, clientModuleUrl=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['viewId', 'clientModuleUrl']
         self._type = 'IdomDashComponent'
         self._namespace = 'idom_dash'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['viewId']
+        self.available_properties = ['viewId', 'clientModuleUrl']
         self.available_wildcard_properties =            []
 
         _explicit_args = kwargs.pop('_explicit_args')

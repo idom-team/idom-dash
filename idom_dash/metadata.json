@@ -11,6 +11,13 @@
         "required": false,
         "description": "The view ID for this component instance"
       },
+      "clientModuleUrl": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
       "setProps": {
         "type": {
           "name": "func"
