@@ -7,8 +7,10 @@ from idom_dash import create_component, run_server
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-victory = idom.install("victory@35.4.0", fallback="loading...")
-material_ui = idom.install("@material-ui/core@4.11.3", fallback="loading...")
+victory, material_ui = idom.install(
+    ["victory@35.4.0", "@material-ui/core@4.11.3"],
+    fallback="loading...",
+)
 
 @idom.component
 def ClickCount():
