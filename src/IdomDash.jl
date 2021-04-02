@@ -3,7 +3,7 @@ module IdomDash
 using Dash
 
 const resources_path = realpath(joinpath( @__DIR__, "..", "deps"))
-const version = "0.0.2"
+const version = "0.0.3"
 
 include("idomdashcomponent.jl")
 
@@ -16,14 +16,14 @@ function __init__()
             [
                 DashBase.Resource(
     relative_package_path = "idom_dash.min.js",
-    external_url = "https://unpkg.com/idom_dash@0.0.2/idom_dash/idom_dash.min.js",
+    external_url = "https://unpkg.com/idom_dash@0.0.3/idom_dash/idom_dash.min.js",
     dynamic = nothing,
     async = nothing,
     type = :js
 ),
 DashBase.Resource(
     relative_package_path = "idom_dash.min.js.map",
-    external_url = "https://unpkg.com/idom_dash@0.0.2/idom_dash/idom_dash.min.js.map",
+    external_url = "https://unpkg.com/idom_dash@0.0.3/idom_dash/idom_dash.min.js.map",
     dynamic = true,
     async = nothing,
     type = :js
