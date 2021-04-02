@@ -4,7 +4,7 @@ from dash import Dash
 from flask import Flask, send_from_directory
 from idom.widgets.utils import multiview
 from idom.core.component import AbstractComponent
-from idom.client.manage import web_modules_dir
+from idom.config import IDOM_CLIENT_IMPORT_SOURCE_URL, IDOM_CLIENT_BUILD_DIR
 from idom.server.flask import PerClientStateServer, Config
 
 from .IdomDashComponent import IdomDashComponent
@@ -15,6 +15,7 @@ SERVER_CONFIG = Config(
     serve_static_files=False,
     redirect_root_to_index=False,
 )
+IDOM_CLIENT_IMPORT_SOURCE_URL.set("/_idom")
 _MOUNT, IdomComponentView = multiview()
 
 
@@ -44,6 +45,6 @@ def _make_render_server(server: Flask) -> PerClientStateServer:
 
     @server.route(f"{SERVER_CONFIG['url_prefix']}/client/web_modules/<path:path>")
     def serve_web_modules(path: str):
-        return send_from_directory(str(web_modules_dir()), path)
+        return send_from_directory(str(IDOM_CLIENT_BUILD_DIR.get()), path)
 
     return idom_server_extension
