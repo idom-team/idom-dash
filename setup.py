@@ -3,7 +3,7 @@ import os
 from setuptools import setup
 
 
-with open('package.json') as f:
+with open("package.json") as f:
     package = json.load(f)
 
 package_name = package["name"].replace(" ", "_").replace("-", "_")
@@ -11,13 +11,13 @@ package_name = package["name"].replace(" ", "_").replace("-", "_")
 setup(
     name=package_name,
     version=package["version"],
-    author=package['author'],
+    author=package["author"],
     packages=[package_name],
     include_package_data=True,
-    license=package['license'],
-    description=package.get('description', package_name),
-    install_requires=["idom[flask]>=0.23.0,<0.24.0"],
-    classifiers = [
-        'Framework :: Dash',
+    license=package["license"],
+    description=package.get("description", package_name),
+    install_requires=["idom[flask]>=0.32.0,<0.33.0"],
+    classifiers=[
+        "Framework :: Dash",
     ],
 )

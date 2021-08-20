@@ -1,6 +1,6 @@
 {
   "src/lib/components/IdomDashComponent.react.js": {
-    "description": "",
+    "description": "IdomDashComponent allows integration between Dash and IDOM",
     "displayName": "IdomDashComponent",
     "methods": [],
     "props": {
@@ -10,13 +10,6 @@
         },
         "required": false,
         "description": "The view ID for this component instance"
-      },
-      "clientModuleUrl": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": ""
       },
       "setProps": {
         "type": {

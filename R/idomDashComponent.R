@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-idomDashComponent <- function(viewId=NULL, clientModuleUrl=NULL) {
+idomDashComponent <- function(viewId=NULL) {
     
-    props <- list(viewId=viewId, clientModuleUrl=clientModuleUrl)
+    props <- list(viewId=viewId)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@ idomDashComponent <- function(viewId=NULL, clientModuleUrl=NULL) {
         props = props,
         type = 'IdomDashComponent',
         namespace = 'idom_dash',
-        propNames = c('viewId', 'clientModuleUrl'),
+        propNames = c('viewId'),
         package = 'idomDash'
         )
 

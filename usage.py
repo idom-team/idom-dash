@@ -7,27 +7,23 @@ from idom_dash import create_component, run_server
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-victory, material_ui = idom.install(
-    ["victory@35.4.0", "@material-ui/core@4.11.3"],
-    fallback="loading...",
-)
+material_ui = idom.web.module_from_template("react", "@material-ui/core@^5")
+MaterialButton = idom.web.export(material_ui, "Button")
+
 
 @idom.component
 def ClickCount():
     count, set_count = idom.hooks.use_state(0)
     return idom.html.button(
-        {
-            "id": "click-counter",
-            "onClick": lambda event: set_count(count + 1)
-        },
-        count
+        {"id": "click-counter", "onClick": lambda event: set_count(count + 1)}, count
     )
+
 
 @idom.component
 def MaterialClickCount():
     count, set_count = idom.hooks.use_state(0)
     return idom.html.div(
-        material_ui.Button(
+        MaterialButton(
             {
                 "color": "primary",
                 "variant": "contained",
@@ -37,18 +33,16 @@ def MaterialClickCount():
         ),
     )
 
+
 app.layout = html.Div(
     [
         html.H1("Simple Click Counter"),
         create_component(ClickCount),
         html.Br(),
-        html.H1("Material UI (installed)"),
+        html.H1("Material UI"),
         create_component(MaterialClickCount),
-        html.Br(),
-        html.H1("Victory Charts (installed)"),
-        create_component(victory.VictoryBar)
     ]
 )
 
 if __name__ == "__main__":
-    run_server(app, "127.0.0.1", 5000, debug=True)
+    run_server(app, "127.0.0.1", 5000)
