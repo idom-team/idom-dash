@@ -12,10 +12,8 @@ pip install idom-dash dash==1.19.0
 
 Then try out a quick example:
 
-```
+```python
 import dash
-import dash_html_components as html
-
 import idom
 
 from idom_dash import create_component, run_server
