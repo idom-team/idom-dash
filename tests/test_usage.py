@@ -27,7 +27,7 @@ def test_usage(dash_duo):
     dash_duo.wait_for_text_to_equal("#click-counter", "3")
 
     # check that dynamic component is interactable
-    material_click_count = dash_duo.find_element(".MuiButtonBase-root")
+    material_click_count = dash_duo.wait_for_element(".MuiButtonBase-root", timeout=10)
 
     material_click_count.click()
     material_click_count.click()
