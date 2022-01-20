@@ -36,7 +36,7 @@ app.layout = create_component(ClickCount)
 
 if __name__ == "__main__":
     # NOTE: you have to use 'idom_dash.run_server` instead of 'app.run_server'
-    run_server(app, "127.0.0.1", 5000, debug=True)
+    run_server(app, "127.0.0.1", 5000,  debug=True)
 ```
 
 To learn what you can do with IDOM's interactive components, check out
