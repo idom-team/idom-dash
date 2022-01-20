@@ -5,11 +5,12 @@ import anyio._backends._asyncio
 from idom_dash.idom_compat import run_daemon_server
 
 from dash.testing.application_runners import import_app
+from dash.testing.browser import Browser
 
 
 # Basic test for the component rendering.
 # The dash_duo pytest fixture is installed with dash (v1.0+)
-def test_usage(dash_duo):
+def test_usage(dash_duo: Browser):
     # Start a dash app contained as the variable `app` in `usage.py`
     app = import_app("usage")
 
@@ -26,11 +27,5 @@ def test_usage(dash_duo):
 
     dash_duo.wait_for_text_to_equal("#click-counter", "3")
 
-    # check that dynamic component is interactable
-    material_click_count = dash_duo.wait_for_element(".MuiButtonBase-root", timeout=10)
-
-    material_click_count.click()
-    material_click_count.click()
-    material_click_count.click()
-
-    dash_duo.wait_for_text_to_equal(".MuiButtonBase-root", "3")
+    # check that dynamic component exists
+    dash_duo.wait_for_element(".VictoryContainer")

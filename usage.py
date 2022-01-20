@@ -7,8 +7,12 @@ from idom_dash import create_component, run_server
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-material_ui = idom.web.module_from_template("react", "@material-ui/core@^5")
-MaterialButton = idom.web.export(material_ui, "Button")
+victory_bar = idom.web.module_from_template(
+    "react",
+    "victory-bar@35.4.0",
+    fallback="⌛",
+)
+VictoryBar = idom.web.export(victory_bar, "VictoryBar")
 
 
 @idom.component
@@ -20,18 +24,8 @@ def ClickCount():
 
 
 @idom.component
-def MaterialClickCount():
-    count, set_count = idom.hooks.use_state(0)
-    return idom.html.div(
-        MaterialButton(
-            {
-                "color": "primary",
-                "variant": "contained",
-                "onClick": lambda event: set_count(count + 1),
-            },
-            count,
-        ),
-    )
+def VictoryChart():
+    return VictoryBar()
 
 
 app.layout = html.Div(
@@ -39,8 +33,8 @@ app.layout = html.Div(
         html.H1("Simple Click Counter"),
         create_component(ClickCount),
         html.Br(),
-        html.H1("Material UI"),
-        create_component(MaterialClickCount),
+        html.H1("Victory Chart"),
+        create_component(VictoryChart),
     ]
 )
 
