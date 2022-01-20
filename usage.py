@@ -1,5 +1,5 @@
 import dash
-import dash_html_components as html
+from dash import html
 
 import idom
 from idom_dash import create_component, run_server
@@ -25,7 +25,8 @@ def ClickCount():
 
 @idom.component
 def VictoryChart():
-    return VictoryBar()
+    bar_style = {"parent": {"width": "500px"}, "data": {"fill": "royalblue"}}
+    return VictoryBar({"style": bar_style})
 
 
 app.layout = html.Div(
