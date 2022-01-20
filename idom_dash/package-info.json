@@ -1,6 +1,6 @@
 {
   "name": "idom_dash",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "A custom component for Dash that uses IDOM",
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
   "author": "Ryan Morshead <ryan.morshead@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "idom-client-react": "^0.9.0",
+    "idom-client-react": "^0.35.1",
     "ramda": "^0.26.1"
   },
   "devDependencies": {
