@@ -14,17 +14,19 @@ Then try out a quick example:
 
 ```python
 import dash
-import idom
+from dash import html as dash_html
 
-from idom_dash import create_component, run_server
+from idom_dash import adapt_layout, configure_app
+from idom import component, html, use_state
 
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+configure_app(app)
 
-@idom.component
+@component
 def ClickCount():
-    count, set_count = idom.hooks.use_state(0)
-    return idom.html.button(
+    count, set_count = use_state(0)
+    return html.button(
         {
             "id": "click-counter",
             "onClick": lambda event: set_count(count + 1)
@@ -32,11 +34,17 @@ def ClickCount():
         count
     )
 
-app.layout = create_component(ClickCount)
+app.layout = adapt_layout(
+    dash_html.Div(
+        [
+            dash_html.H1("A simple click counter"),
+            ClickCount(),
+        ]
+    )
+)
 
 if __name__ == "__main__":
-    # NOTE: you have to use 'idom_dash.run_server` instead of 'app.run_server'
-    run_server(app, "127.0.0.1", 5000, debug=True)
+    app.run("127.0.0.1", 5000, debug=True)
 ```
 
 To learn what you can do with IDOM's interactive components, check out
