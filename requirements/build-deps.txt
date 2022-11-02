@@ -3,3 +3,4 @@ dash[dev]>=1.15.0
 # release dependencies
 twine
 wheel
+build
