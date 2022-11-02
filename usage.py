@@ -2,10 +2,11 @@ import dash
 from dash import html
 
 import idom
-from idom_dash import create_component, run_server
+from idom_dash import configure, layout
 
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+configure(app)
 
 victory_bar = idom.web.module_from_template(
     "react",
@@ -29,15 +30,17 @@ def VictoryChart():
     return VictoryBar({"style": bar_style})
 
 
-app.layout = html.Div(
-    [
-        html.H1("Simple Click Counter"),
-        create_component(ClickCount),
-        html.Br(),
-        html.H1("Victory Chart"),
-        create_component(VictoryChart),
-    ]
+app.layout = layout(
+    html.Div(
+        [
+            html.H1("Simple Click Counter"),
+            ClickCount(),
+            html.Br(),
+            html.H1("Victory Chart"),
+            VictoryChart(),
+        ]
+    )
 )
 
 if __name__ == "__main__":
-    run_server(app, "127.0.0.1", 5000)
+    app.run("127.0.0.1", 5000, debug=True)

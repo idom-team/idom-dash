@@ -1,48 +1,58 @@
-import os
-from typing import Any, Callable
+from __future__ import annotations
+
+from dataclasses import replace
+from urllib.parse import parse_qs
+from collections.abc import Sequence
 
 from dash import Dash
-from flask import Flask
-from idom.config import IDOM_DEBUG_MODE
-from idom.widgets import multiview
-from idom.core.proto import ComponentType
-from idom.server.flask import PerClientStateServer, Config, FlaskServer
-from idom import Ref
+from dash.development.base_component import Component as DashComponent
+from idom.types import ComponentType
+from idom.backend.flask import configure as _configure, Options
+from idom import component, html, use_location
 
 from .IdomDashComponent import IdomDashComponent
 
-
-IDOM_DASH_SERVER_BASE_URL = Ref(os.environ.get("IDOM_DASH_SERVER_BASE_URL", ""))
-SERVER_CONFIG = Config(
-    url_prefix="/_idom",
-    serve_static_files=True,
-    redirect_root_to_index=False,
-)
-_MOUNT_VIEW, IdomComponentView = multiview()
+_NEXT_VIEW_ID = 0
+_VIEW_REGISTRY: dict[str, ComponentType] = {}
 
 
-def create_component(
-    __constructor: Callable[[], ComponentType], *args: Any, **kwargs: Any
-) -> IdomDashComponent:
-    view_id = _MOUNT_VIEW.add(None, lambda: __constructor(*args, **kwargs))
-    return IdomDashComponent(viewId=view_id)
+def layout(component: DashComponent) -> DashComponent:
+    children = component.children
+    if isinstance(children, DashComponent):
+        layout(children)
+    elif not isinstance(children, str) and isinstance(children, Sequence):
+        component.children = [
+            _create_component(c) if isinstance(c, ComponentType) else layout(c)
+            for c in children
+        ]
+    return component
 
 
-def run_server(
-    app: Dash, host: str, port: int, *args: Any, **kwargs: Any
-) -> PerClientStateServer:
-    idom_server_extension = _make_render_server(app.server)
-    idom_server_extension.run(host, port, *args, **kwargs)
-    return idom_server_extension
+def _create_component(idom_component: ComponentType) -> IdomDashComponent:
+    global _NEXT_VIEW_ID
+    dash_component = IdomDashComponent(viewId=str(_NEXT_VIEW_ID))
+    _VIEW_REGISTRY[_NEXT_VIEW_ID] = idom_component
+    _NEXT_VIEW_ID += 1
+    return dash_component
 
 
-def run_daemon_server(
-    app: Dash, host: str, port: int, *args: Any, **kwargs: Any
-) -> PerClientStateServer:
-    idom_server_extension = _make_render_server(app.server)
-    idom_server_extension.run_in_thread(host, port, *args, **kwargs)
-    return idom_server_extension
+def configure(app: Dash, options: Options | None = None) -> None:
+    if options is None:
+        options = Options(url_prefix="/_idom_app")
+    elif hasattr(options, "url_prefix"):
+        options = replace(options, url_prefix="/_idom_app")
+    _configure(app.server, _router, options)
 
 
-def _make_render_server(server: Flask) -> FlaskServer:
-    return PerClientStateServer(IdomComponentView, SERVER_CONFIG, app=server)
+@component
+def _router():
+    view_id_param = parse_qs(use_location().search[1:]).get("view_id", [])
+    if len(view_id_param) != 1:
+        return f"Expected exactly one view_id query parameter, got {len(view_id_param)}"
+
+    try:
+        view_id = int(view_id_param[0])
+    except Exception as error:
+        return "Invalid view_id, expected integer"
+
+    return _VIEW_REGISTRY.get(view_id, "unknown view_id")

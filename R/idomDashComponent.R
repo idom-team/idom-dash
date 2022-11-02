@@ -1,5 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
+#' @export
 idomDashComponent <- function(viewId=NULL) {
     
     props <- list(viewId=viewId)
