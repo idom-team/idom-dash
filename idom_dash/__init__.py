@@ -6,7 +6,7 @@ import json
 
 import dash as _dash
 
-from .idom_compat import layout, configure
+from .idom_compat import configure_app, adapt_layout
 
 # noinspection PyUnresolvedReferences
 from ._imports_ import *

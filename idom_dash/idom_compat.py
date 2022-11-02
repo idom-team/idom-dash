@@ -8,7 +8,7 @@ from dash import Dash
 from dash.development.base_component import Component as DashComponent
 from idom.types import ComponentType
 from idom.backend.flask import configure as _configure, Options
-from idom import component, html, use_location
+from idom import component, use_location
 
 from .IdomDashComponent import IdomDashComponent
 
@@ -16,16 +16,24 @@ _NEXT_VIEW_ID = 0
 _VIEW_REGISTRY: dict[str, ComponentType] = {}
 
 
-def layout(component: DashComponent) -> DashComponent:
+def adapt_layout(component: DashComponent) -> DashComponent:
     children = component.children
     if isinstance(children, DashComponent):
-        layout(children)
+        adapt_layout(children)
     elif not isinstance(children, str) and isinstance(children, Sequence):
         component.children = [
-            _create_component(c) if isinstance(c, ComponentType) else layout(c)
+            _create_component(c) if isinstance(c, ComponentType) else adapt_layout(c)
             for c in children
         ]
     return component
+
+
+def configure_app(app: Dash, options: Options | None = None) -> None:
+    if options is None:
+        options = Options(url_prefix="/_idom_app")
+    elif hasattr(options, "url_prefix"):
+        options = replace(options, url_prefix="/_idom_app")
+    _configure(app.server, _router, options)
 
 
 def _create_component(idom_component: ComponentType) -> IdomDashComponent:
@@ -34,14 +42,6 @@ def _create_component(idom_component: ComponentType) -> IdomDashComponent:
     _VIEW_REGISTRY[_NEXT_VIEW_ID] = idom_component
     _NEXT_VIEW_ID += 1
     return dash_component
-
-
-def configure(app: Dash, options: Options | None = None) -> None:
-    if options is None:
-        options = Options(url_prefix="/_idom_app")
-    elif hasattr(options, "url_prefix"):
-        options = replace(options, url_prefix="/_idom_app")
-    _configure(app.server, _router, options)
 
 
 @component

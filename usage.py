@@ -2,11 +2,11 @@ import dash
 from dash import html
 
 import idom
-from idom_dash import configure, layout
+from idom_dash import adapt_layout, configure_app
 
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-configure(app)
+configure_app(app)
 
 victory_bar = idom.web.module_from_template(
     "react",
@@ -30,7 +30,7 @@ def VictoryChart():
     return VictoryBar({"style": bar_style})
 
 
-app.layout = layout(
+app.layout = adapt_layout(
     html.Div(
         [
             html.H1("Simple Click Counter"),
