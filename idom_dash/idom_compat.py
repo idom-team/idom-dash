@@ -1,14 +1,18 @@
 from __future__ import annotations
 
+from asyncio import Queue
+import asyncio
 from dataclasses import replace
 from urllib.parse import parse_qs
 from collections.abc import Sequence
+from typing import TYPE_CHECKING, Any, Generic, TypeVar, overload
 
-from dash import Dash
+from dash import Dash, callback as dash_callback, Input, Output, html as dash_html
 from dash.development.base_component import Component as DashComponent
 from idom.types import ComponentType
 from idom.backend.flask import configure as _configure, Options
-from idom import component, use_location
+from idom.core.types import State
+from idom import component, use_location, use_state, use_effect
 
 from .IdomDashComponent import IdomDashComponent
 
@@ -17,7 +21,11 @@ _VIEW_REGISTRY: dict[str, ComponentType] = {}
 
 
 def adapt_layout(component: DashComponent) -> DashComponent:
-    children = component.children
+    try:
+        children = component.children
+    except AttributeError:
+        return component
+
     if isinstance(children, DashComponent):
         adapt_layout(children)
     elif not isinstance(children, str) and isinstance(children, Sequence):
