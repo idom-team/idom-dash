@@ -1,7 +1,7 @@
 {
-  "src/lib/components/IdomDashComponent.react.js": {
-    "description": "IdomDashComponent allows integration between Dash and IDOM",
-    "displayName": "IdomDashComponent",
+  "src/lib/components/ReactPyDashComponent.react.js": {
+    "description": "ReactPyDashComponent allows integration between Dash and ReactPy",
+    "displayName": "ReactPyDashComponent",
     "methods": [],
     "props": {
       "viewId": {

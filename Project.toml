@@ -1,8 +1,8 @@
 
-name = "IdomDash"
-uuid = "1b08a953-4be3-4667-9a23-f213e429975d"
+name = "ReactpyDash"
+uuid = "1b08a953-4be3-4667-9a23-4f770f38b795"
 authors = ["Ryan Morshead <ryan.morshead@gmail.com>"]
-version = "0.0.5"
+version = "0.1.0"
 
 [deps]
 Dash = "1b08a953-4be3-4667-9a23-3db579824955"

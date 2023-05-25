@@ -1,4 +1,4 @@
 /* eslint-disable import/prefer-default-export */
-import IdomDashComponent from './components/IdomDashComponent.react';
+import ReactPyDashComponent from './components/ReactPyDashComponent.react';
 
-export {IdomDashComponent};
+export {ReactPyDashComponent};

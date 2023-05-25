@@ -1,7 +1,7 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 #' @export
-idomDashComponent <- function(viewId=NULL) {
+reactPyDashComponent <- function(viewId=NULL) {
     
     props <- list(viewId=viewId)
     if (length(props) > 0) {
@@ -9,10 +9,10 @@ idomDashComponent <- function(viewId=NULL) {
     }
     component <- list(
         props = props,
-        type = 'IdomDashComponent',
-        namespace = 'idom_dash',
+        type = 'ReactPyDashComponent',
+        namespace = 'reactpy_dash',
         propNames = c('viewId'),
-        package = 'idomDash'
+        package = 'reactpyDash'
         )
 
     structure(component, class = c('dash_component', 'list'))
