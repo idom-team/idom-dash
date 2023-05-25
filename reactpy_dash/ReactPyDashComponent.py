@@ -3,9 +3,9 @@
 from dash.development.base_component import Component, _explicitize_args
 
 
-class IdomDashComponent(Component):
-    """An IdomDashComponent component.
-IdomDashComponent allows integration between Dash and IDOM
+class ReactPyDashComponent(Component):
+    """A ReactPyDashComponent component.
+ReactPyDashComponent allows integration between Dash and ReactPy
 
 Keyword arguments:
 
@@ -13,8 +13,8 @@ Keyword arguments:
     The view ID for this component instance."""
     _children_props = []
     _base_nodes = ['children']
-    _namespace = 'idom_dash'
-    _type = 'IdomDashComponent'
+    _namespace = 'reactpy_dash'
+    _type = 'ReactPyDashComponent'
     @_explicitize_args
     def __init__(self, viewId=Component.UNDEFINED, **kwargs):
         self._prop_names = ['viewId']
@@ -26,4 +26,4 @@ Keyword arguments:
         _locals.update(kwargs)  # For wildcard attrs and excess named props
         args = {k: _locals[k] for k in _explicit_args}
 
-        super(IdomDashComponent, self).__init__(**args)
+        super(ReactPyDashComponent, self).__init__(**args)

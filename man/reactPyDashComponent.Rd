@@ -1,16 +1,16 @@
 % Auto-generated: do not edit by hand
-\name{idomDashComponent}
+\name{reactPyDashComponent}
 
-\alias{idomDashComponent}
+\alias{reactPyDashComponent}
 
-\title{IdomDashComponent component}
+\title{ReactPyDashComponent component}
 
 \description{
-IdomDashComponent allows integration between Dash and IDOM
+ReactPyDashComponent allows integration between Dash and ReactPy
 }
 
 \usage{
-idomDashComponent(viewId=NULL)
+reactPyDashComponent(viewId=NULL)
 }
 
 \arguments{

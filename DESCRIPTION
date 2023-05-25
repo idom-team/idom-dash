@@ -1,13 +1,13 @@
-Package: idomDash
-Title: A custom component for Dash that uses IDOM
-Version: 0.0.5
-Description: A custom component for Dash that uses IDOM
+Package: reactpyDash
+Title: A custom component for Dash that uses ReactPy
+Version: 0.1.0
+Description: A custom component for Dash that uses ReactPy
 Depends: R (>= 3.0.2)
 Imports: 
 Suggests: 
 License: MIT + file LICENSE
-URL: https://github.com/idom-team/idom-dash
-BugReports: https://github.com/idom-team/idom-dash/issues
+URL: https://github.com/reactpy-team/reactpy-dash
+BugReports: https://github.com/reactpy-team/reactpy-dash/issues
 Encoding: UTF-8
 LazyData: true
 KeepSource: true

@@ -1,19 +1,19 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-export idomdashcomponent
+export reactpydashcomponent
 
 """
-    idomdashcomponent(;kwargs...)
+    reactpydashcomponent(;kwargs...)
 
-An IdomDashComponent component.
+An ReactPyDashComponent component.
 
 Keyword arguments:
 - `viewId` (String; optional): The view ID for this component instance
 - `clientModuleUrl` (String; optional)
 """
-function idomdashcomponent(; kwargs...)
+function reactpydashcomponent(; kwargs...)
         available_props = Symbol[:viewId, :clientModuleUrl]
         wild_props = Symbol[]
-        return Component("idomdashcomponent", "IdomDashComponent", "idom_dash", available_props, wild_props; kwargs...)
+        return Component("reactpydashcomponent", "ReactPyDashComponent", "reactpy_dash", available_props, wild_props; kwargs...)
 end
 

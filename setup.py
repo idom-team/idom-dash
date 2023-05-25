@@ -16,7 +16,7 @@ setup(
     include_package_data=True,
     license=package["license"],
     description=package.get("description", package_name),
-    install_requires=["idom[flask]>=0.41,<0.42"],
+    install_requires=["reactpy[flask]>=1,<2"],
     classifiers=[
         "Framework :: Dash",
     ],

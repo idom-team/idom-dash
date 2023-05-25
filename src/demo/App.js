@@ -1,14 +1,13 @@
 /* eslint no-magic-numbers: 0 */
 import React, {Component} from 'react';
 
-import { IdomDashComponent } from '../lib';
+import {ReactPyDashComponent} from '../lib';
 
 class App extends Component {
-
     constructor() {
         super();
         this.state = {
-            value: ''
+            value: '',
         };
         this.setProps = this.setProps.bind(this);
     }
@@ -20,12 +19,12 @@ class App extends Component {
     render() {
         return (
             <div>
-                <IdomDashComponent
+                <ReactPyDashComponent
                     setProps={this.setProps}
                     {...this.state}
                 />
             </div>
-        )
+        );
     }
 }
 

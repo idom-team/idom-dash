@@ -1,15 +1,15 @@
-.idomDash_js_metadata <- function() {
-deps_metadata <- list(`idom_dash` = structure(list(name = "idom_dash",
-version = "0.0.5", src = list(href = NULL,
+.reactpyDash_js_metadata <- function() {
+deps_metadata <- list(`reactpy_dash` = structure(list(name = "reactpy_dash",
+version = "0.1.0", src = list(href = NULL,
 file = "deps"), meta = NULL,
-script = 'idom_dash.min.js',
-stylesheet = NULL, head = NULL, attachment = NULL, package = "idomDash",
+script = 'reactpy_dash.min.js',
+stylesheet = NULL, head = NULL, attachment = NULL, package = "reactpyDash",
 all_files = FALSE), class = "html_dependency"),
-`idom_dash` = structure(list(name = "idom_dash",
-version = "0.0.5", src = list(href = NULL,
+`reactpy_dash` = structure(list(name = "reactpy_dash",
+version = "0.1.0", src = list(href = NULL,
 file = "deps"), meta = NULL,
-script = 'idom_dash.min.js.map',
-stylesheet = NULL, head = NULL, attachment = NULL, package = "idomDash",
+script = 'reactpy_dash.min.js.map',
+stylesheet = NULL, head = NULL, attachment = NULL, package = "reactpyDash",
 all_files = FALSE, dynamic = TRUE), class = "html_dependency"))
 return(deps_metadata)
 }

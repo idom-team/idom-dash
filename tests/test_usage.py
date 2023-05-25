@@ -2,7 +2,7 @@
 # Some module ends up only partially initialized for some reason...
 import anyio._backends._asyncio
 
-from idom_dash.idom_compat import run_daemon_server
+from reactpy_dash.reactpy_compat import run_daemon_server
 
 from dash.testing.application_runners import import_app
 from dash.testing.browser import Browser

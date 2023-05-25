@@ -6,7 +6,7 @@ import json
 
 import dash as _dash
 
-from .idom_compat import configure_app, adapt_layout
+from .reactpy_compat import configure_app, adapt_layout
 
 # noinspection PyUnresolvedReferences
 from ._imports_ import *
@@ -36,14 +36,14 @@ _this_module = _sys.modules[__name__]
 
 _js_dist = [
     {
-        "relative_package_path": "idom_dash.min.js",
+        "relative_package_path": "reactpy_dash.min.js",
         "external_url": "https://unpkg.com/{0}@{2}/{1}/{1}.min.js".format(
             package_name, __name__, __version__
         ),
         "namespace": package_name,
     },
     {
-        "relative_package_path": "idom_dash.min.js.map",
+        "relative_package_path": "reactpy_dash.min.js.map",
         "external_url": "https://unpkg.com/{0}@{2}/{1}/{1}.min.js.map".format(
             package_name, __name__, __version__
         ),

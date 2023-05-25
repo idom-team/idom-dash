@@ -6,11 +6,11 @@ from collections.abc import Sequence
 
 from dash import Dash
 from dash.development.base_component import Component as DashComponent
-from idom.types import ComponentType
-from idom.backend.flask import configure as _configure, Options
-from idom import component, use_location
+from reactpy.types import ComponentType
+from reactpy.backend.flask import configure as _configure, Options
+from reactpy import component, use_location
 
-from .IdomDashComponent import IdomDashComponent
+from .ReactPyDashComponent import ReactPyDashComponent
 
 _NEXT_VIEW_ID = 0
 _VIEW_REGISTRY: dict[str, ComponentType] = {}
@@ -30,16 +30,16 @@ def adapt_layout(component: DashComponent) -> DashComponent:
 
 def configure_app(app: Dash, options: Options | None = None) -> None:
     if options is None:
-        options = Options(url_prefix="/_idom_app")
+        options = Options(url_prefix="/_reactpy_app")
     elif hasattr(options, "url_prefix"):
-        options = replace(options, url_prefix="/_idom_app")
+        options = replace(options, url_prefix="/_reactpy_app")
     _configure(app.server, _router, options)
 
 
-def _create_component(idom_component: ComponentType) -> IdomDashComponent:
+def _create_component(reactpy_component: ComponentType) -> ReactPyDashComponent:
     global _NEXT_VIEW_ID
-    dash_component = IdomDashComponent(viewId=str(_NEXT_VIEW_ID))
-    _VIEW_REGISTRY[_NEXT_VIEW_ID] = idom_component
+    dash_component = ReactPyDashComponent(viewId=str(_NEXT_VIEW_ID))
+    _VIEW_REGISTRY[_NEXT_VIEW_ID] = reactpy_component
     _NEXT_VIEW_ID += 1
     return dash_component
 
